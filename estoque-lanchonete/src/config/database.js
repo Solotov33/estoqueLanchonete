@@ -7,11 +7,11 @@ const mysql = require('mysql2/promise'); // versao com suporte a async/await
 require('dotenv').config();
 
 const pool = mysql.createPool({
-  host:     process.env.DB_HOST     || 'localhost',
+  host:     process.env.DB_HOST     || 'mysql.railway.internal',
   port:     process.env.DB_PORT     || 3306,
   user:     process.env.DB_USER     || 'root',
-  password: process.env.DB_PASSWORD || '',
-  database: process.env.DB_NAME     || 'estoque_lanchonete',
+  password: process.env.DB_PASSWORD || 'FGCkUYIgeYhzCkFBmLtLndthczBFSBtE',
+  database: process.env.DB_NAME     || 'railway',
   waitForConnections: true, // espera se nao houver conexao livre
   connectionLimit:    10,   // maximo de conexoes simultaneas
   queueLimit:         0,    // sem limite de fila de espera
