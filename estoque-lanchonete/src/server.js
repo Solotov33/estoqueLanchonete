@@ -6,18 +6,20 @@ require('dotenv').config(); // carrega o arquivo .env antes de tudo
 const express = require('express');
 const cors = require('cors');
 const app  = express();
-const PORT = process.env.PORT || 3000;
+
+// CORREÇÃO: O Railway injeta a porta automaticamente na variável process.env.PORT
+const PORT = process.env.PORT || 3000; 
 
 // --- Middlewares globais ---
 app.use(cors());
-app.use(express.json());                        // interpreta JSON no corpo da requisicao
-app.use(express.urlencoded({ extended: true })); // interpreta dados de formulario
+app.use(express.json());                        
+app.use(express.urlencoded({ extended: true })); 
 
 // --- Rotas ---
 const produtoRoutes = require('./routes/produtoRoutes');
-app.use('/produtos', produtoRoutes); // todas as rotas de produtos sob /produtos
+app.use('/produtos', produtoRoutes); 
 
-// Rota raiz: util para checar se o servidor esta no ar
+// Rota raiz
 app.get('/', (req, res) => {
   res.json({
     mensagem: 'API de Estoque - Lanchonete',
@@ -35,13 +37,12 @@ app.get('/', (req, res) => {
   });
 });
 
-// Rota fallback: qualquer caminho nao cadastrado retorna 404
+// Rota fallback
 app.use((req, res) => {
   res.status(404).json({ erro: 'Rota nao encontrada.' });
 });
 
 // Inicia o servidor
-app.listen(PORT, () => {
-  console.log(`Servidor rodando em http://localhost:${PORT}`);
-  console.log(`Consulte as rotas em http://localhost:${PORT}/`);
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`Servidor rodando na porta ${PORT}`);
 });
