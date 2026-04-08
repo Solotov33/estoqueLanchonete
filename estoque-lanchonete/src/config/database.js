@@ -26,7 +26,7 @@ const pool = mysql.createPool({
     conn.release(); // devolve a conexao ao pool
   } catch (err) {
     console.error('Erro ao conectar ao banco de dados:', err.message);
-    process.exit(1); // encerra a aplicacao se nao conseguir conectar
+    //process.exit(1); // encerra a aplicacao se nao conseguir conectar
   }
 })();
 
