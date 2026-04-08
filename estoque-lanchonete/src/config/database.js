@@ -4,7 +4,7 @@
 // mais eficiente do que abrir/fechar uma conexao a cada requisicao.
 
 const mysql = require('mysql2/promise'); // versao com suporte a async/await
-require('dotenv').config();
+
 
 const pool = mysql.createPool({
   host: process.env.DB_HOST,     // No Render, coloque o MYSQLHOST (o endereço longo que termina em .railway.app)
